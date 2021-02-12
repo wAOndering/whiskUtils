@@ -13,13 +13,18 @@ ang_vel = diff(ang_savgol);
 %ang_vel = diff(angfilt);
 ang_vel_filt = sgolayfilt(ang_vel,2,13);
 
+if locs(1) < 6
+locs(1) = locs(1)+6;
+end
 
-ang_vel_pro = ang_vel_filt(locs-5);
 %Get angular velocity from retraction peaks
+if l < 6
+l(1) = l(1)+6;
+end
+
 ang_ret = ang_vel_filt(l-5);
+ang_vel_pro = ang_vel_filt(locs-5);
 ang_vel_ret = -ang_ret;
-
-
 
 %% export the data
 Tcurv = table(curve_peak, curve_widths, points);
